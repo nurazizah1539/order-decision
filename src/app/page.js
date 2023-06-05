@@ -10,20 +10,11 @@ export default function Home() {
   const menusAvailable = [
     { qty: 0, name: '--Pilih salah satu--', key:'all' },
     { qty: 2, name: 'Berry Bean Sundae', key:'berrybean' },
-    { qty: 1, name: 'Yogurt', key:'yogurt' },
-    { qty: 4, name: 'Strawberry', key: 'berry' },
-    { qty: 3, name: 'Coklat', key: 'co' },
-    { qty: 5, name: 'Matcha', key: 'cha' },
+    { qty: 1, name: 'Es Krim Yogurt', key:'yogurt' },
+    { qty: 4, name: 'Es Krim Strawberry', key: 'berry' },
+    { qty: 3, name: 'Es Krim Coklat', key: 'co' },
+    { qty: 5, name: 'Es Krim Matcha', key: 'cha' },
   ]
-
-
-  const list = [
-    { qty: 10, size: 'XXL' },
-    { qty: 2, size: 'XL' },
-    { qty: 8, size: 'M' }
-  ]
-  
-  list.sort((a, b) => (a.qty > b.qty) ? 1 : -1)
   
   function handleMenu(value, order) {
     console.log(order, "aa", value)
@@ -36,11 +27,15 @@ export default function Home() {
   }
 
   function generateAnswer() {
-    let label = "[pilih menu dulu bambang]"
+    let label = "[pilih menu dulu dong cantik]"
     let choosen
-    if((first || second) == 0) {
+    if(first == 0) {
       label = {
-        name: '... Bentar.. Lu Milih Apaan..'
+        name: '... Bentar.. Anda Milih Apaan..'
+      }
+    }else if(second == 0) {
+      label = {
+        name: '... Bentar.. Anda Milih Apaan..'
       }
     }else if(first > second) {
       choosen = first
@@ -50,7 +45,7 @@ export default function Home() {
       label = menusAvailable.find(elm =>  elm.qty == choosen);
     }else{
       label = {
-        name: '... Bentar.. Lu Milih Apaan..'
+        name: '... Bentar.. Anda Milih Apaan..'
       }
     }
     setMenu(label?.name);
@@ -61,7 +56,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
        <div className='flex flex-row justify-between w-[50vw]'>
        <select className='p-10 text-blue-600' onChange={(val) => handleMenu(val.target.value, 'first')} autoFocus name='Order1' placeholder='masukan menu pertama'>
-        {menusAvailable.map(el => <option value={el.qty}>{el.name}</option>)}
+        {menusAvailable.map(el => <option key={el.key} value={el.qty}>{el.name}</option>)}
        </select>
        <select className='p-10 text-blue-600' onChange={(val) => handleMenu(val.target.value, 'second')} autoFocus name='Order1' placeholder='masukan menu pertama'>
         {menusAvailable.map(el => <option key={el.key} value={el.qty}>{el.name}</option>)}
