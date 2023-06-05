@@ -38,7 +38,11 @@ export default function Home() {
   function generateAnswer() {
     let label = "[pilih menu dulu bambang]"
     let choosen
-    if(first > second) {
+    if((first || second) == 0) {
+      label = {
+        name: '... Bentar.. Lu Milih Apaan..'
+      }
+    }else if(first > second) {
       choosen = first
       label = menusAvailable.find(elm =>  elm.qty == choosen);
     }else if(second> first){
